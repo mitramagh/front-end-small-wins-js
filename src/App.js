@@ -1,162 +1,168 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
-import BoardsView from "./components/BoardsView";
-import CardsView from "./components/CardsView";
+import PlansView from "./components/PlansView";
+import ContentsView from "./components/ContentsView";
+import Content from "./components/Content";
+
 
 function App() {
-  const defaultBoards = [];
-  const defaultCards = [];
+  const defaultPlans = [];
+  const defaultContents = [];
 
-  const url = "https://powerful-lake-89201.herokuapp.com";
-  // useState for Board
-  const [boards, setBoards] = useState(defaultBoards);
-  // useState for Card
-  const [cards, setCards] = useState(defaultCards);
-  // useState to keep track of what board we're currently looking at (user's choice)
-  const [chosenBoard, setChosenBoard] = useState(null);
+  const url = "http://127.0.0.1:5000";
+  // useState for Plan
+  const [plans, setPlans] = useState(defaultPlans);
+  // useState for Content
+  const [contents, setContents] = useState(defaultContents);
+  // useState to keep track of what Plan we're currently looking at (user's choice)
+  const [chosenPlan, setChosenPlan] = useState(null);
 
   // useEffect upon dom load
   useEffect(() => {
     // axios call, after promise is completed or rejected:
     axios
-      .get(`${url}/boards`)
+      .get(`${url}/plans`)
       .then((response) => {
-        // iterate through each board and append to boards
-        const updatedBoards = [...boards];
+        // iterate through each Plan and append to Plans
+        const updatedPlans = [...plans];
         const dataList = response.data;
         for (const data of dataList) {
-          updatedBoards.push(data);
+          updatedPlans.push(data);
         }
-        setBoards(updatedBoards);
+        setPlans(updatedPlans);
       })
       .catch((e) => {
         console.log(e);
       });
   }, []);
 
-  // BoardView -> BoardList, NewBoardButton, NewBoardForm (visible/invisible depending on NewBoardButton toggle): siblings easier ^^ -> all state at BoardView level to control NewBoardForm visibility
+  // PlanView -> PlanList, NewPlanButton, NewPlanForm (visible/invisible depending on NewPlanButton toggle): siblings easier ^^ -> all state at PlanView level to control NewPlanForm visibility
 
-  //get all cards from user chosen board -> pass down to boardlist
-  const getCardsFromOneBoard = (boardId) => {
+  //get all Contents from user chosen Plan -> pass down to Planlist
+  const getContentsFromOnePlan = (planId) => {
     axios
-      .get(`${url}/boards/${boardId}/cards`)
+      .get(`${url}/Plans/${planId}/contents`)
       .then((response) => {
-        const updatedCards = [];
+        const updatedContents = [];
         const dataList = response.data;
         for (const data of dataList) {
-          updatedCards.push(data);
+          updatedContents.push(data);
         }
-        setCards(updatedCards);
-        setChosenBoard(boardId);
+        setContents(updatedContents);
+        setChosenPlan(planId);
       })
       .catch((e) => {
         console.log(e);
       });
   };
 
-  // delete board (need to add endpoints)
-  const deleteBoard = (boardId) => {
+  // delete Plan (need to add endpoints)
+  const deletePlan = (planId) => {
     axios
-      .delete(`${url}/boards/${boardId}`)
+      .delete(`${url}/plans/${planId}`)
       .then(() => {
-        const updatedBoards = boards.filter((board) => board.id !== boardId);
-        setBoards(updatedBoards);
+        const updatedPlans = plans.filter((plan) => plan.id !== planId);
+        setPlans(updatedPlans);
       })
       .catch((e) => {
         console.log(e);
       });
   };
 
-  // delete card
-  const deleteCard = (cardId) => {
+  // delete Content
+  const deleteContent = (contentId) => {
     axios
-      .delete(`${url}/cards/${cardId}`)
+      .delete(`${url}/contents/${contentId}`)
       .then(() => {
-        const updatedCards = cards.filter((card) => card.card_id !== cardId);
-        setCards(updatedCards);
+        const updatedContents = contents.filter((content) => content.Content_id !== contentId);
+        setContents(updatedContents);
       })
       .catch((e) => {
         console.log(e);
       });
   };
 
-  // onformsubmitboard
-  const onFormSubmitBoard = (requestBody) => {
+  // onformsubmitPlan
+  const onFormSubmitPlan = (requestBody) => {
     axios
-      .post(`${url}/boards`, requestBody)
+      .post(`${url}/plans`, requestBody)
       .then((response) => {
-        const newBoard = {
+        const newPlan = {
           id: response.data.id,
-          title: requestBody.title,
-          owner: requestBody.owner,
+          idea: requestBody.idea,
+          planner: requestBody.planner,
         };
-        setBoards([...boards, newBoard]);
+        setPlans([...plans, newPlan]);
       })
       .catch((e) => {
         console.log(e);
       });
   };
 
-  // on formsubmitcard
-  const onFormSubmitCard = (boardId, requestBody) => {
+  // on formsubmitContent
+  const onFormSubmitContent = (planId, requestBody) => {
     axios
-      .post(`${url}/boards/${boardId}/card`, requestBody)
+      .post(`${url}/plans/${planId}/content`, requestBody)
       .then((response) => {
-        const newCard = {
-          card_id: response.data.card_id,
-          board_id: response.data.board_id,
+        const newContent = {
+          content_id: response.data.content_id,
+          plan_id: response.data.plan_id,
           message: response.data.message,
           like_count: response.data.like_count,
         };
-        setCards([...cards, newCard]);
+        setContents([...contents, newContent]);
       })
       .catch((e) => {
         console.log(e);
       });
   };
 
-  const updateLikeCts = (cardId) => {
-    const cardObj = cards.filter((card) => card.card_id === cardId);
+  const updateLikeCts = (contentId) => {
+    const contentObj = contents.filter((content) =>content.content_id === contentId);
     axios
-      .put(`https://powerful-lake-89201.herokuapp.com/cards/${cardId}`, {
-        like_count: cardObj.like_count + 1,
+      .put(`http://127.0.0.1:5000/${contentId}`, {
+        like_count: contentObj.like_count + 1,
       })
       .then(() => {
-        const updatedCards = cards.map((card) => {
-          if (card.card_id === cardId) {
-            card.like_count++;
+        const updatedContents = contents.map((content) => {
+          if (content.content_id === contentId) {
+            content.like_count++;
           }
-          return card;
+          return content;
         });
-        setCards(updatedCards);
+        setContents(updatedContents);
       })
       .catch((e) => {
         console.log(e);
       });
   };
 
+  const testContent=({content:"How to cook Pasta", content_type:"text", plan_id:1, content_id:1})
+
+
   // default landing page
-  if (chosenBoard === null) {
+  if (chosenPlan === null) {
     return (
       <div>
-        <h1>Inspiration Board!</h1>
-        <BoardsView
-          boardData={boards}
-          selectBoardCallback={getCardsFromOneBoard}
-          deleteBoardCallback={deleteBoard}
-          makeBoardCallback={onFormSubmitBoard}
-        ></BoardsView>
+        <h1>Hello Planner!</h1>
+        <Content {...testContent}/>
+        <PlansView
+          planData={plans}
+          selectPlanCallback={getContentsFromOnePlan}
+          deletePlanCallback={deletePlan}
+          makePlanCallback={onFormSubmitPlan}
+        ></PlansView>
       </div>
     );
   }
-  // render cardsview when user choose certain board
-  // need to add logic to set chosenBoard state back to null when user clicked 'x' button in cardsview
+  // render Contentsview when user choose certain Plan
+  // need to add logic to set chosenPlan state back to null when user clicked 'x' button in Contentsview
   else {
     let userChoice = null;
-    for (const board of boards) {
-      if (board.id === chosenBoard) {
-        userChoice = board;
+    for (const plan of plans) {
+      if (plan.id === chosenPlan) {
+        userChoice = plan;
         break;
       }
     }
@@ -164,16 +170,16 @@ function App() {
     console.log(userChoice);
     return (
       <div>
-        <h1>Board : {userChoice.title}</h1>
-        <CardsView
-          cards={cards}
+        <h1>Plan : {userChoice.title}</h1>
+        <ContentsView
+          contents={contents}
           updateLikes={updateLikeCts}
-          deleteCard={deleteCard}
-          submitCard={onFormSubmitCard}
-          chosenBoard={chosenBoard}
-          setChosenBoard={setChosenBoard}
-          setCards={setCards}
-        ></CardsView>
+          deleteContent={deleteContent}
+          submitContent={onFormSubmitContent}
+          chosenPlan={chosenPlan}
+          setChosenPlan={setChosenPlan}
+          setContents={setContents}
+        ></ContentsView>
       </div>
     );
   }
