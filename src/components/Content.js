@@ -19,10 +19,7 @@ const Content = ({
   comment,
   deleteContent,
   updateLikes,
-}) => {
-  // const increaseLikeCt = () => {
-  //     updateLikes(id);
-  // }
+})=> {
 
   return (
     <div className="Content">
@@ -32,19 +29,18 @@ const Content = ({
       <VideoContent {...content}/>
       <button  id="likeCount" onClick={() => updateLikes(content_id)}>{like_count} ❤️ </button>
       <button id="deleteContent" onClick={() => deleteContent(content_id)}>X</button>
-      <h2>{content}</h2>
+      {/* <h2>{content}</h2> */}
     </div>
   );
-};
-
+  }
 Content.propTypes = {
   content_id: PropTypes.number.isRequired,
-  Plan_id: PropTypes.number.isRequired,
+  plan_id: PropTypes.number.isRequired,
   content: PropTypes.string.isRequired,
   content_type:PropTypes.string.isRequired,
-  likeCount: PropTypes.number.isRequired,
-  deleteContent: PropTypes.func.isRequired,
-  updateLikes: PropTypes.func.isRequired,
+  // likeCount: PropTypes.number.isRequired,
+  // deleteContent: PropTypes.func.isRequired,
+  // updateLikes: PropTypes.func.isRequired,
 };
 
 export default Content;

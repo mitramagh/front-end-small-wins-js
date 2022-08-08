@@ -5,7 +5,7 @@ import Content from "./Content";
 import PropTypes from "prop-types";
 
 const ContentList = ({ contents, deleteContent, updateLikes }) => {
-  const contentComponents = contents.map((content) => {
+  const contentComponents = contents?.map((content) => {
     return (
       <Content
         Content_id={content.content_id}

@@ -1,7 +1,7 @@
 .Content{
-    border: solid black 1px;
+    border: solid rgb(150, 162, 156) 1px;
     background-color: lightblue;
-    width: 20vw;
+    width: 65vw;
     height: 20vw ;
     font-family: 'Courier New', Courier, monospace;
     font-size: 0.5em;
@@ -12,6 +12,7 @@
     /* margin:auto; */
     margin: 2vw;
     position: relative;
+    margin-left: 25vw;
 }
 
 #deleteContent{

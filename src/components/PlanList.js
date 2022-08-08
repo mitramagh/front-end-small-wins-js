@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import "./PlanList.css";
 import Plan from "./Plan";
+import AddComment from "./AddComment";
 
 const PlanList = (props) => {
  
@@ -8,11 +9,12 @@ const PlanList = (props) => {
     return (
       <Plan
         key={plan.id}
-        id={plan.id}
+        planId={plan.id}
         idea={plan.idea}
         planner={plan.planner}
         selectPlanCallback={props.selectPlanCallback}
         deletePlanCallback={props.deletePlanCallback}
+        handleAddComment={props.handleAddComment}
       />
     );
   });

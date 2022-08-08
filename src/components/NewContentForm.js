@@ -8,7 +8,7 @@ const defaultContent = {
   like_count: 0 
 };
 
-const NewContentForm = ({ submitContent, handleClose, chosenBoard }) => {
+const NewContentForm = ({ submitContent, handleClose, chosenPlan}) => {
   const [ContentData, setContentData] = useState(defaultContent);
 
   const handleContentFormInput = (e) => {
@@ -23,7 +23,7 @@ const NewContentForm = ({ submitContent, handleClose, chosenBoard }) => {
 
   const handleContentFormSubmission = (e) => {
     e.preventDefault();
-    submitContent(chosenBoard, ContentData);
+    submitContent(chosenPlan, ContentData);
     setContentData(defaultContent);
     handleClose();
   };

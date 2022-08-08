@@ -1,0 +1,41 @@
+
+.commentforplans{
+    /* background-color: mintcream; */
+    width: 25vw;
+    height: 20vw ;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.5em;
+    overflow: auto ;
+    display: flex;
+    padding: 10px;
+    text-align: center;
+    /* margin:auto; */
+    margin: 2vw;
+    position: relative;
+    border: solid rgb(157, 167, 162) 6px;
+    border-radius: 30px; 
+    white-space: pre-wrap;
+}
+textarea {
+	border: none;
+	resize: none;
+    background-color: rgb(174, 222, 179);
+    /* background: url(./src/assets/background.jpeg) */
+    border-radius: 20px;
+}
+textarea:focus {
+	outline: none;
+}
+
+.save {
+	background-color: rgb(157, 167, 162);
+	border: none;
+	border-radius: 15px;
+	padding: 5px 10px 5px 10px;
+}
+
+.save:hover {
+	background-color: #ededed;
+	cursor: pointer;
+}
+

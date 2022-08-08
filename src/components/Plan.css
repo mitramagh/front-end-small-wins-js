@@ -1,6 +1,6 @@
-.Plan{
-    background-color: lightblue;
-    width: 20vw;
+.plan{
+    /* background-color: mintcream; */
+    width: 55vw;
     height: 20vw ;
     font-family: 'Courier New', Courier, monospace;
     font-size: 0.5em;
@@ -11,9 +11,11 @@
     /* margin:auto; */
     margin: 2vw;
     position: relative;
+    border: solid rgb(157, 167, 162) 6px;
+    border-radius: 30px;
 }
 
-.Plan button{
+.plan button{
     position: absolute;
     /* top: 2px; */
     /* right: 2px; */
@@ -30,6 +32,6 @@ h1, h2 {
     align-self: center;
 }
 
-.Plan :hover {
+.plan :hover {
     background-color: lightgray;
 }

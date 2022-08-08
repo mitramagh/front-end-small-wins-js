@@ -1,7 +1,12 @@
 #addPlan {
-    width: 20vw;
+    width: 25vw;
     height: 20vw;
-    border: solid black 1px;
-    padding: 1px;
-    margin: 0 auto;
+    padding: 10px;
+    /* margin: 2vw auto; */
+    /* background-color: mintcream; */
+    border: solid rgb(157, 167, 162) 6px;
+    border-radius: 30px; 
+    margin: 2vw;
+
 }
+

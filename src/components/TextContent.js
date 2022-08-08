@@ -9,13 +9,14 @@ const TextContent=({ content, deleteContent, updateLikes }) => {
 
     return (
         <div className="textcontent">
+            <span>{content}</span>
             {content}
+            deleteContent={deleteContent}
+            updateLikes={updateLikes}
             {/* <Content 
             content_type={content.content_type}
             like_count={content.like_count}
             comment={content.comment}
-            deleteContent={deleteContent}
-            updateLikes={updateLikes}
             /> */}
         </div>
         

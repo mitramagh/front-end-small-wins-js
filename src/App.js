@@ -1,9 +1,19 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
+import Sidebar from './components/Sidebar';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import GrowthPath from './pages/GrowthPath';
+import HappyToShare from './pages/HappyToShare';
+import Trash from './pages/Trash';
+
+
+import AddComment from "./components/AddComment"
 import PlansView from "./components/PlansView";
 import ContentsView from "./components/ContentsView";
 import Content from "./components/Content";
+import FileUpload from "./components/FileUpload"
 
 
 function App() {
@@ -17,6 +27,8 @@ function App() {
   const [contents, setContents] = useState(defaultContents);
   // useState to keep track of what Plan we're currently looking at (user's choice)
   const [chosenPlan, setChosenPlan] = useState(null);
+
+  const [files, setFiles]=useState([])
 
   // useEffect upon dom load
   useEffect(() => {
@@ -42,7 +54,7 @@ function App() {
   //get all Contents from user chosen Plan -> pass down to Planlist
   const getContentsFromOnePlan = (planId) => {
     axios
-      .get(`${url}/Plans/${planId}/contents`)
+      .get(`${url}/plans/${planId}/contents`)
       .then((response) => {
         const updatedContents = [];
         const dataList = response.data;
@@ -50,14 +62,16 @@ function App() {
           updatedContents.push(data);
         }
         setContents(updatedContents);
+        console.log(`chosenplan: ${planId}`)
         setChosenPlan(planId);
+        console.log(dataList)
       })
       .catch((e) => {
         console.log(e);
       });
   };
 
-  // delete Plan (need to add endpoints)
+  // delete Plan 
   const deletePlan = (planId) => {
     axios
       .delete(`${url}/plans/${planId}`)
@@ -75,7 +89,7 @@ function App() {
     axios
       .delete(`${url}/contents/${contentId}`)
       .then(() => {
-        const updatedContents = contents.filter((content) => content.Content_id !== contentId);
+        const updatedContents = contents.filter((content) => content.content_id !== contentId);
         setContents(updatedContents);
       })
       .catch((e) => {
@@ -103,20 +117,29 @@ function App() {
   // on formsubmitContent
   const onFormSubmitContent = (planId, requestBody) => {
     axios
-      .post(`${url}/plans/${planId}/content`, requestBody)
+      .post(`${url}/plans/${planId}/contents`, requestBody)
       .then((response) => {
         const newContent = {
           content_id: response.data.content_id,
           plan_id: response.data.plan_id,
-          message: response.data.message,
+          content: response.data.content,
           like_count: response.data.like_count,
+          comment:response.data.comment
+
         };
         setContents([...contents, newContent]);
+        // console.log(newContent)
       })
       .catch((e) => {
         console.log(e);
       });
   };
+
+  // add comments for planList
+  const addComment=() => {
+    console.log();
+  }
+
 
   const updateLikeCts = (contentId) => {
     const contentObj = contents.filter((content) =>content.content_id === contentId);
@@ -138,6 +161,7 @@ function App() {
       });
   };
 
+
   const testContent=({content:"How to cook Pasta", content_type:"text", plan_id:1, content_id:1})
 
 
@@ -145,6 +169,15 @@ function App() {
   if (chosenPlan === null) {
     return (
       <div>
+        <Router>
+          <Sidebar />
+          <Routes>
+            <Route path='/' exact component={Home} />
+            <Route path='/growthpath' component={GrowthPath} />
+            <Route path='/happytoshare' component={HappyToShare} />
+            <Route path='/trash' component={Trash} />
+          </Routes>
+        </Router>
         <h1>Hello Planner!</h1>
         <Content {...testContent}/>
         <PlansView
@@ -152,6 +185,7 @@ function App() {
           selectPlanCallback={getContentsFromOnePlan}
           deletePlanCallback={deletePlan}
           makePlanCallback={onFormSubmitPlan}
+          handleAddComment={addComment}
         ></PlansView>
       </div>
     );
@@ -170,12 +204,18 @@ function App() {
     console.log(userChoice);
     return (
       <div>
-        <h1>Plan : {userChoice.title}</h1>
+        <h1>Plan : {userChoice.idea}</h1>
+        {/* <Content {...testContent}/> */}
+        <div>Upload File</div>
+        <FileUpload files={files} setFiles={setFiles}
+                  deleteContent={deleteContent}
+                  />
         <ContentsView
           contents={contents}
           updateLikes={updateLikeCts}
           deleteContent={deleteContent}
           submitContent={onFormSubmitContent}
+          // onSubmit={() => onFormSubmitContent (chosenPlan, contents)}
           chosenPlan={chosenPlan}
           setChosenPlan={setChosenPlan}
           setContents={setContents}

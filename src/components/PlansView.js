@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import "./PlansView.css";
 import NewPlanButton from "./NewPlanButton";
 import NewPlanForm from "./NewPlanForm";
+import AddComment from "./AddComment"
 
 const PlansView = (props) => {
   return (
@@ -12,6 +13,7 @@ const PlansView = (props) => {
         selectPlanCallback={props.selectPlanCallback}
         deletePlanCallback={props.deletePlanCallback}
       />
+      <AddComment  handleAddComment={props.handleAddComment}/>
       <NewPlanButton makePlanCallback={props.makePlanCallback} />
     </div>
   );
