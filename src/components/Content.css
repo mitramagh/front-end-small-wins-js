@@ -1,18 +1,21 @@
 .Content{
-    border: solid rgb(150, 162, 156) 1px;
-    background-color: lightblue;
-    width: 65vw;
+    width: 60vw;
     height: 20vw ;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 0.5em;
+    font-size: 1em;
     overflow: auto ;
     display: flex;
+    flex-direction: column;
+
     padding: 10px;
     text-align: center;
-    /* margin:auto; */
-    margin: 2vw;
+    margin:auto;
+    margin-bottom: 2vw;
     position: relative;
-    margin-left: 25vw;
+    /* margin-left: 25vw; */
+    border: solid rgb(157, 167, 162) 6px;
+    border-radius: 30px;
+
 }
 
 #deleteContent{

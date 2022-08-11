@@ -5,7 +5,7 @@ const Plan = (props) => {
   
   const idea = props.idea;
   const planner = props.planner;
-  const planId = props.planId;
+  const planId = props.id;
   console.log("INSIDE PLAN")
   console.log(props)
 

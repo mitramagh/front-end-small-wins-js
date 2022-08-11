@@ -9,7 +9,7 @@ const PlanList = (props) => {
     return (
       <Plan
         key={plan.id}
-        planId={plan.id}
+        id={plan.id}
         idea={plan.idea}
         planner={plan.planner}
         selectPlanCallback={props.selectPlanCallback}

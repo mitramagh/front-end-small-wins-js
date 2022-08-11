@@ -8,10 +8,10 @@ const ContentList = ({ contents, deleteContent, updateLikes }) => {
   const contentComponents = contents?.map((content) => {
     return (
       <Content
-        Content_id={content.content_id}
-        board_id={content.board_id}
+        content_id={content.content_id}
+        plan_id={content.plan_id}
         content={content.content}
-        content_type={content.content_type}
+        type={content.type}
         like_count={content.like_count}
         comment={content.comment}
         deleteContent={deleteContent}

@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
-import Sidebar from './components/Sidebar';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import GrowthPath from './pages/GrowthPath';
-import HappyToShare from './pages/HappyToShare';
-import Trash from './pages/Trash';
+import Sidebar from "./components/Sidebar";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import GrowthPath from "./pages/GrowthPath";
+import HappyToShare from "./pages/HappyToShare";
+import Trash from "./pages/Trash";
+import { LoginForm } from "./components/LoginForm";
 
-
-import AddComment from "./components/AddComment"
+import AddComment from "./components/AddComment";
 import PlansView from "./components/PlansView";
 import ContentsView from "./components/ContentsView";
 import Content from "./components/Content";
-import FileUpload from "./components/FileUpload"
-
+import FileUpload from "./components/FileUpload";
 
 function App() {
   const defaultPlans = [];
@@ -28,7 +27,7 @@ function App() {
   // useState to keep track of what Plan we're currently looking at (user's choice)
   const [chosenPlan, setChosenPlan] = useState(null);
 
-  const [files, setFiles]=useState([])
+  const [files, setFiles] = useState([]);
 
   // useEffect upon dom load
   useEffect(() => {
@@ -62,16 +61,16 @@ function App() {
           updatedContents.push(data);
         }
         setContents(updatedContents);
-        console.log(`chosenplan: ${planId}`)
+        console.log(`chosenplan: ${planId}`);
         setChosenPlan(planId);
-        console.log(dataList)
+        console.log(dataList);
       })
       .catch((e) => {
         console.log(e);
       });
   };
 
-  // delete Plan 
+  // delete Plan
   const deletePlan = (planId) => {
     axios
       .delete(`${url}/plans/${planId}`)
@@ -89,7 +88,9 @@ function App() {
     axios
       .delete(`${url}/contents/${contentId}`)
       .then(() => {
-        const updatedContents = contents.filter((content) => content.content_id !== contentId);
+        const updatedContents = contents.filter(
+          (content) => content.content_id !== contentId
+        );
         setContents(updatedContents);
       })
       .catch((e) => {
@@ -122,13 +123,13 @@ function App() {
         const newContent = {
           content_id: response.data.content_id,
           plan_id: response.data.plan_id,
+          type:response.data.type,
           content: response.data.content,
           like_count: response.data.like_count,
-          comment:response.data.comment
-
+          comment: response.data.comment,
         };
         setContents([...contents, newContent]);
-        // console.log(newContent)
+        console.log(newContent);
       })
       .catch((e) => {
         console.log(e);
@@ -136,15 +137,16 @@ function App() {
   };
 
   // add comments for planList
-  const addComment=() => {
+  const addComment = () => {
     console.log();
-  }
-
+  };
 
   const updateLikeCts = (contentId) => {
-    const contentObj = contents.filter((content) =>content.content_id === contentId);
+    const contentObj = contents.filter(
+      (content) => content.content_id === contentId
+    );
     axios
-      .put(`http://127.0.0.1:5000/${contentId}`, {
+      .put(`${url}/contents/${contentId}`, {
         like_count: contentObj.like_count + 1,
       })
       .then(() => {
@@ -161,9 +163,12 @@ function App() {
       });
   };
 
-
-  const testContent=({content:"How to cook Pasta", content_type:"text", plan_id:1, content_id:1})
-
+  const testContent = {
+    content: "How to cook Pasta",
+    type: "text",
+    plan_id: 1,
+    content_id: 1,
+  };
 
   // default landing page
   if (chosenPlan === null) {
@@ -172,14 +177,15 @@ function App() {
         <Router>
           <Sidebar />
           <Routes>
-            <Route path='/' exact component={Home} />
-            <Route path='/growthpath' component={GrowthPath} />
-            <Route path='/happytoshare' component={HappyToShare} />
-            <Route path='/trash' component={Trash} />
+            <Route path="/" exact component={Home} />
+            <Route path="/login" element={<LoginForm />} />
+            <Route path="/growthpath" element={<ContentsView />} />
+            <Route path="/happytoshare" component={HappyToShare} />
+            <Route path="/trash" component={Trash} />
           </Routes>
         </Router>
         <h1>Hello Planner!</h1>
-        <Content {...testContent}/>
+        {/* <Content {...testContent}/> */}
         <PlansView
           planData={plans}
           selectPlanCallback={getContentsFromOnePlan}
@@ -191,7 +197,6 @@ function App() {
     );
   }
   // render Contentsview when user choose certain Plan
-  // need to add logic to set chosenPlan state back to null when user clicked 'x' button in Contentsview
   else {
     let userChoice = null;
     for (const plan of plans) {
@@ -207,15 +212,16 @@ function App() {
         <h1>Plan : {userChoice.idea}</h1>
         {/* <Content {...testContent}/> */}
         <div>Upload File</div>
-        <FileUpload files={files} setFiles={setFiles}
-                  deleteContent={deleteContent}
-                  />
+        <FileUpload
+          files={files}
+          setFiles={setFiles}
+          deleteContent={deleteContent}
+        />
         <ContentsView
           contents={contents}
           updateLikes={updateLikeCts}
           deleteContent={deleteContent}
           submitContent={onFormSubmitContent}
-          // onSubmit={() => onFormSubmitContent (chosenPlan, contents)}
           chosenPlan={chosenPlan}
           setChosenPlan={setChosenPlan}
           setContents={setContents}

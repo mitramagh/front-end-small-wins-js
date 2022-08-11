@@ -1,26 +1,20 @@
 import React from "react";
 // import {props} from "./Content"
-import Content from "./Content"
+import Content from "./Content";
 
-
-
-
-const TextContent=({ content, deleteContent, updateLikes }) => {
-
-    return (
-        <div className="textcontent">
-            <span>{content}</span>
-            {content}
-            deleteContent={deleteContent}
-            updateLikes={updateLikes}
-            {/* <Content 
-            content_type={content.content_type}
+const TextContent = ({ content, deleteContent, updateLikes }) => {
+  return (
+    <div className="textcontent">
+      <span>{content}</span>
+     
+      
+      {/* <Content 
+            type={content.type}
             like_count={content.like_count}
             comment={content.comment}
             /> */}
-        </div>
-        
-    )
-}
+    </div>
+  );
+};
 
 export default TextContent;

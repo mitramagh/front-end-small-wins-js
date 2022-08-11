@@ -13,6 +13,12 @@ export const SidebarData = [
     cName: 'nav-text'
   },
   {
+    title: 'Login',
+    path: '/login',
+    icon: <RiIcons.RiHomeGearFill />,
+    cName: 'nav-text'
+  },
+  {
     title: 'GrowthPath',
     path: '/growthpath',
     icon: <IoIcons.IoMdFlower/>,

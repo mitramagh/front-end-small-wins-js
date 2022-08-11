@@ -3,12 +3,12 @@ import React, { useState } from "react";
 import "./NewContentForm.css";
 import PropTypes from "prop-types";
 
-const defaultContent = { 
-  content: "", 
-  like_count: 0 
+const defaultContent = {
+  content: "",
+  like_count: 0,
 };
 
-const NewContentForm = ({ submitContent, handleClose, chosenPlan}) => {
+const NewContentForm = ({ submitContent, chosenPlan }) => {
   const [ContentData, setContentData] = useState(defaultContent);
 
   const handleContentFormInput = (e) => {
@@ -18,6 +18,7 @@ const NewContentForm = ({ submitContent, handleClose, chosenPlan}) => {
 
     const newContentData = { ...ContentData };
     newContentData[name] = value;
+    console.log(newContentData);
     setContentData(newContentData);
   };
 
@@ -25,37 +26,52 @@ const NewContentForm = ({ submitContent, handleClose, chosenPlan}) => {
     e.preventDefault();
     submitContent(chosenPlan, ContentData);
     setContentData(defaultContent);
-    handleClose();
   };
 
   return (
-    <div className="popup-box">
-      <div className="box">
-        <span className="close-icon" onClick={handleClose}>
-          x
-        </span>
-        <form onSubmit={handleContentFormSubmission}>
-          <fieldset>
-            <legend>Create a new Content.</legend>
-            <label htmlFor="content">content</label>
-            <input
-              name="content"
-              type="text"
-              value={ContentData.content}
+    <div className="contentform">
+      <form onSubmit={handleContentFormSubmission}>
+        <fieldset>
+          <legend>Add a new Content.</legend>
+          <label htmlFor="content">Content</label>
+          <input
+            name="content"
+            type="text"
+            value={ContentData.content}
+            onChange={handleContentFormInput}
+            id="content"
+          ></input>
+          <label htmlFor="type">
+            Content Type
+            <select
+              name="type"
+              id="type"
+              value={ContentData.type}
               onChange={handleContentFormInput}
-              id="content"
-            ></input>
-            <input type="submit" />
-          </fieldset>
-        </form>
-      </div>
+            >
+              <option value="Video" data-testid="select-option">
+                Video
+              </option>
+              <option value="Audio" data-testid="select-option">
+                Audio
+              </option>
+              <option value="Text" data-testid="select-option">
+                Text
+              </option>
+              <option value="Image" data-testid="select-option">
+                Image
+              </option>
+            </select>
+          </label>
+          <input className="submitcontent" type="submit" />
+        </fieldset>
+      </form>
     </div>
-  )
-}
+  );
+};
 
-NewContentForm.propTypes={
+NewContentForm.propTypes = {
   submitContent: PropTypes.func.isRequired,
-  handleClose: PropTypes.func.isRequired,
-}
+};
 
 export default NewContentForm;

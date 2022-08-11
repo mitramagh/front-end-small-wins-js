@@ -19,6 +19,7 @@
 textarea {
 	border: none;
 	resize: none;
+    padding: 10px;
     background-color: rgb(174, 222, 179);
     /* background: url(./src/assets/background.jpeg) */
     border-radius: 20px;
