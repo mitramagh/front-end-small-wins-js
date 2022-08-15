@@ -2,6 +2,7 @@ import React from "react";
 import "./ToggleSwitch.css";
 
 const ToggleSwitch = ({ value, onClick, name, className }) => {
+  
   return (
     <div className="toggle-switch">
       <input
@@ -10,6 +11,8 @@ const ToggleSwitch = ({ value, onClick, name, className }) => {
         name={name}
         id={name}
         onClick={onClick}
+        checked={value}
+       
       />
       <label className="label" htmlFor={name}>
         <span className={className} />

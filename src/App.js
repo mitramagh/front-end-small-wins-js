@@ -7,7 +7,6 @@ import Home from "./pages/Home";
 import GrowthPath from "./pages/GrowthPath";
 import HappyToShare from "./pages/HappyToShare";
 import Trash from "./pages/Trash";
-import LoginForm from "./components/LoginForm";
 import ToggleSwitch from "./components/ToggleSwitch";
 
 import AddComment from "./components/AddComment";
@@ -20,7 +19,7 @@ function App() {
   const defaultPlans = [];
   const defaultContents = [];
 
-  const url = "https://dashboard.heroku.com/apps/small-wins-capstone";
+  const url = "https://small-wins-capstone.herokuapp.com";
   // useState for Plan
   const [plans, setPlans] = useState(defaultPlans);
   // useState for Content
@@ -196,8 +195,8 @@ function App() {
         <Router>
           <Sidebar />
           <Routes>
-            <Route path="/" exact element={LoginForm} />
-            <Route path="/login" element={<LoginForm />} />
+            <Route path="/" exact element={Home} />
+            <Route path="/login" element={<Home/>} />
             <Route path="/growthpath" element={<ContentsView />} />
             <Route path="/happytoshare" element={<ContentsView />} />
             <Route path="/trash" component={Trash} />
