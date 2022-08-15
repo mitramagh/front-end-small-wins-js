@@ -8,29 +8,35 @@
 }
 
 .box {
-    position: relative;
-    width: 70%;
+    display: flex;
+    justify-content: space-around;
+    width: 65vw;
     margin: 0 auto;
-    height: auto;
-    max-height: 70vh;
+    margin-left: 25vw;
+    height:25vh;
+    /* max-height: 70vh; */
     margin-top: calc(100vh - 85vh - 20px);
-    background: #fff;
-    border-radius: 4px;
+    background: rgb(157, 167, 162);
+    border-radius: 20px;
     padding: 20px;
     border: 1px solid #999;
     overflow: auto;
+    font-size: 30px;
+    font-family: Helvetica, sans-serif;
+    color:white;
 }
 
 .close-icon {
     content: 'x';
+    color:rgb(66, 77, 72);
     cursor: pointer;
-    position: fixed;
+    position:inherit;
     right: calc(15% - 30px);
     top: calc(100vh - 85vh - 33px);
     background: #ededed;
     width: 25px;
     height: 25px;
-    border-radius: 50%;
+    border-radius: 30%;
     line-height: 20px;
     text-align: center;
     border: 1px solid #999;

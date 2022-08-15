@@ -1,6 +1,6 @@
 // import axios from "axios";
 import React from "react";
-import "./ContentList.css";
+import "./ContentsView.css";
 import Content from "./Content";
 import PropTypes from "prop-types";
 
@@ -20,7 +20,7 @@ const ContentList = ({ contents, deleteContent, updateLikes }) => {
     );
   });
 
-  return <div className="ContentList">{contentComponents}</div>;
+  return <div className="content-list">{contentComponents}</div>;
 };
 
 ContentList.propTypes = {

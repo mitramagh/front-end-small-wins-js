@@ -1,37 +1,55 @@
 .plan{
     /* background-color: mintcream; */
-    width: 55vw;
+    width: 60vw;
     height: 20vw ;
     font-family: 'Courier New', Courier, monospace;
     font-size: 0.5em;
     overflow: auto ;
     display: flex;
+    gap: 10px;
+    flex-direction: column;
+    /* flex-direction: row; */
     padding: 10px;
-    text-align: center;
     /* margin:auto; */
     margin: 2vw;
     position: relative;
     border: solid rgb(157, 167, 162) 6px;
     border-radius: 30px;
+    /* margin-left: 15vw; */
+}
+.plan div {
+    /* display: flex; */
+    justify-content: center;
+    /* height: 100%; */
+    align-content: center;
 }
 
 .plan button{
     position: absolute;
-    /* top: 2px; */
-    /* right: 2px; */
-    /* align-items: flex-start; */
-    justify-items: flex-end;
-    /* align-self: flex-end; */
-
+    top: 2px; 
 }
-div {
-    display: flex;
-    flex-direction: column;
+.plantext {
+    cursor: pointer;
+    text-align: center;
+    width: 100%;
 }
-h1, h2 {
-    align-self: center;
+.plantext :hover {
+    background-color:rgb(107, 150, 128);
 }
 
-.plan :hover {
-    background-color: lightgray;
-}
+.deleteplan{
+    content: 'x';
+    color:rgb(66, 77, 72);
+    cursor: pointer;
+    /* position:inherit; */
+    /* right: calc(15% - 30px); */
+    /* top: calc(100vh - 85vh - 33px); */
+    background: #999;
+    width: 25px;
+    height: 25px;
+    border-radius: 30%;
+    line-height: 20px;
+    text-align: center;
+    border: 1px solid #999;
+    font-size: 20px;
+    }

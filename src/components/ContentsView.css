@@ -1,7 +1,6 @@
-.container {
+/* .container {
     display:flex;
     width:65vw;
-    /* left:50%; */
     margin-left: 25vw;
     border: solid rgb(157, 167, 162) 6px;
     padding:15px;
@@ -9,4 +8,48 @@
     flex-wrap: wrap;
     align-items: center;
     border-radius: 30px;
+} */
+
+/* .contentview {
+    display:flex;
+    flex-direction: row;
+
+} */
+
+.containerview {
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+
+}
+
+.exitview{
+    width:20vw;
+    height:8vw;
+    background-color: rgb(157, 167, 162);
+    border:solid rgb(157, 167, 162) 6px;
+
+    border-radius: 30px;
+    margin: 20px;
+}
+
+.content-list{
+    display:flex;
+    border:solid rgb(157, 167, 162) 6px;
+    flex-direction:row;
+    align-items: center;
+    flex-wrap:wrap;
+    border-radius: 30px;
+    margin:20px;
+    padding:20px;
+}
+
+.addfile{
+    display:flex;
+    /* border:solid rgb(157, 167, 162) 6px; */
+    flex-direction:row;
+    align-items: center;
+    border-radius: 30px;
+    /* margin:20px; */
+    padding:20px;
 }

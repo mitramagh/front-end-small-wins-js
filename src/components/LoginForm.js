@@ -1,36 +1,52 @@
 import React from "react";
-import "./NewContentForm.css";
+import { useNavigate } from "react-router-dom";
+import Joi from "joi";
+// import Joi from "joi-browser";
+// import { useValidator } from "react-joi";
+import Form from "./common/Form";
+import auth from "./services/authService";
 
-export const LoginForm = (props) => {
-  // username = React.createRef();
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // const username=username.current.value;
-    console.log("submitted");
+class LoginForm extends Form {
+  state = {
+    data: { username: "", password: "" },
+    errors: {},
   };
-  return (
-    <div className="loginform">
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <div ClassName="form-group">
-          <label htmlFor="username">Username</label>
-          <input
-            autoFocus
-            // ref={username}
-            id="username"
-            type="text"
-            className="form-control"
-          />
-        </div>
-        <div ClassName="form-group">
-          <label htmlFor="password">Password</label>
-          <input id="password" type="text" className="form-control"></input>
-        </div>
-        <button className="btn btn-primary">Login</button>
-      </form>
-    </div>
-  );
-};
 
-// export default LoginForm
+  schema = {
+    username: Joi.string().required().label("Username"),
+    password: Joi.string().required().label("Password"),
+  };
+
+  doSubmit = async () => {
+    try {
+      const { data } = this.state;
+      await auth.login(data.username, data.password);
+
+      const { state } = this.props.location;
+      window.location = state ? state.from.pathname : "/";
+    } catch (ex) {
+      if (ex.response && ex.response.status === 400) {
+        const errors = { ...this.state.errors };
+        errors.username = ex.response.data;
+        this.setState({ errors });
+      }
+    }
+  };
+
+  render() {
+    if (auth.getCurrentUser()) return <useNavigate to="/" />;
+
+    return (
+      <div>
+        <h1>Login</h1>
+        <form onSubmit={this.handleSubmit}>
+          {this.renderInput("username", "Username")}
+          {this.renderInput("password", "Password", "password")}
+          {this.renderButton("Login")}
+        </form>
+      </div>
+    );
+  }
+}
+
+export default LoginForm;

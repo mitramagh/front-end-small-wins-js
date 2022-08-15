@@ -1,0 +1,12 @@
+.container {
+    display:flex;
+    width:65vw;
+    /* left:50%; */
+    margin-left: 25vw;
+    border: solid rgb(157, 167, 162) 6px;
+    padding:15px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    border-radius: 30px;
+}

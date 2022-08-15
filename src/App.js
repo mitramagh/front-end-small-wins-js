@@ -7,7 +7,8 @@ import Home from "./pages/Home";
 import GrowthPath from "./pages/GrowthPath";
 import HappyToShare from "./pages/HappyToShare";
 import Trash from "./pages/Trash";
-import { LoginForm } from "./components/LoginForm";
+import LoginForm from "./components/LoginForm";
+import ToggleSwitch from "./components/ToggleSwitch";
 
 import AddComment from "./components/AddComment";
 import PlansView from "./components/PlansView";
@@ -27,6 +28,8 @@ function App() {
   // useState to keep track of what Plan we're currently looking at (user's choice)
   const [chosenPlan, setChosenPlan] = useState(null);
 
+  const [status, setStatus] = useState("In-progress");
+
   const [files, setFiles] = useState([]);
 
   // useEffect upon dom load
@@ -41,6 +44,7 @@ function App() {
         for (const data of dataList) {
           updatedPlans.push(data);
         }
+        // setStatus("Achieved! Kudos!!");
         setPlans(updatedPlans);
       })
       .catch((e) => {
@@ -70,6 +74,20 @@ function App() {
       });
   };
 
+  // update Plan Status
+  const updatePlanStatus = (planId, checked) => {
+    const routeWord = checked ? "mark_complete" : "mark_incomplete";
+    axios
+      .patch(`${url}/plans/${planId}/${routeWord}`)
+      .then((response) => {
+        const newPlans = [...plans];
+        const idx = newPlans.findIndex((plan) => plan.id === planId);
+        newPlans[idx] = response.data;
+        console.log("hereeee", response.data);
+        setPlans(newPlans);
+      })
+      .catch((err) => console.log(err));
+  };
   // delete Plan
   const deletePlan = (planId) => {
     axios
@@ -107,6 +125,7 @@ function App() {
           id: response.data.id,
           idea: requestBody.idea,
           planner: requestBody.planner,
+          date: "Now",
         };
         setPlans([...plans, newPlan]);
       })
@@ -123,7 +142,7 @@ function App() {
         const newContent = {
           content_id: response.data.content_id,
           plan_id: response.data.plan_id,
-          type:response.data.type,
+          type: response.data.type,
           content: response.data.content,
           like_count: response.data.like_count,
           comment: response.data.comment,
@@ -177,22 +196,25 @@ function App() {
         <Router>
           <Sidebar />
           <Routes>
-            <Route path="/" exact component={Home} />
+            <Route path="/" exact element={LoginForm} />
             <Route path="/login" element={<LoginForm />} />
             <Route path="/growthpath" element={<ContentsView />} />
-            <Route path="/happytoshare" component={HappyToShare} />
+            <Route path="/happytoshare" element={<ContentsView />} />
             <Route path="/trash" component={Trash} />
           </Routes>
         </Router>
         <h1>Hello Planner!</h1>
         {/* <Content {...testContent}/> */}
-        <PlansView
-          planData={plans}
-          selectPlanCallback={getContentsFromOnePlan}
-          deletePlanCallback={deletePlan}
-          makePlanCallback={onFormSubmitPlan}
-          handleAddComment={addComment}
-        ></PlansView>
+        <div>
+          <PlansView
+            planData={plans}
+            selectPlanCallback={getContentsFromOnePlan}
+            deletePlanCallback={deletePlan}
+            makePlanCallback={onFormSubmitPlan}
+            handleToggleCompleted={updatePlanStatus}
+            handleAddComment={addComment}
+          ></PlansView>
+        </div>
       </div>
     );
   }
@@ -212,11 +234,6 @@ function App() {
         <h1>Plan : {userChoice.idea}</h1>
         {/* <Content {...testContent}/> */}
         <div>Upload File</div>
-        <FileUpload
-          files={files}
-          setFiles={setFiles}
-          deleteContent={deleteContent}
-        />
         <ContentsView
           contents={contents}
           updateLikes={updateLikeCts}

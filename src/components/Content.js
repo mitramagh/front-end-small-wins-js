@@ -3,7 +3,6 @@ import React from "react";
 import "./Content.css";
 import PropTypes from "prop-types";
 import TextContent from "./TextContent";
-// import ImageContent from "./ImageContent"
 import AudioContent from "./AudioContent";
 import VideoContent from "./VideoContent";
 
@@ -39,7 +38,7 @@ const Content = ({
       )}
       {contentType.includes("pdf") && (
         <embed
-          class="form-control"
+          className="form-control"
           src={`data:application/pdf;${content}`}
           id="pdf"
         />

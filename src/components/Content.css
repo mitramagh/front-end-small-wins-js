@@ -1,23 +1,31 @@
 .Content{
-    width: 60vw;
-    height: 20vw ;
+    
     font-family: 'Courier New', Courier, monospace;
     font-size: 1em;
     overflow: auto ;
-    display: flex;
-    flex-direction: column;
-
+    /* display: flex; */
+    /* flex-direction: column; */
+    flex-wrap:wrap;
     padding: 10px;
     text-align: center;
     margin:auto;
     margin-bottom: 2vw;
     position: relative;
+    width:30vw;
+    height:30vw;
     /* margin-left: 25vw; */
-    border: solid rgb(157, 167, 162) 6px;
-    border-radius: 30px;
+    
+}
+.textcontent{
+    border: solid rgb(157, 167, 162) 2px;
+    border-radius: 10px;
+    width: 30vw;
+    height: 30vw ;
+    /* display: flex; */
+    /* flex-direction: row; */
+
 
 }
-
 #deleteContent{
     position: absolute;
     /* top: 2px; */
@@ -25,16 +33,31 @@
     /* align-items: flex-start; */
     justify-items: flex-end;
     /* align-self: flex-end; */
+    content: 'x';
+    color:rgb(66, 77, 72);
+    cursor: pointer;
+    /* position:inherit; */
+    /* right: calc(15% - 30px); */
+    /* top: calc(100vh - 85vh - 33px); */
+    background:white;
+    width: 25px;
+    height: 25px;
+    border-radius: 30%;
+    line-height: 20px;
+    text-align: center;
+    border: 1px solid #999;
+    font-size: 20px;
+    /* padding:10px; */
 
 }
 #likeCount {
     position:absolute;
     bottom:20px;
 }
-div {
+/* div {
     display: flex;
     flex-direction: column;
-}
+} */
 h1, h2 {
     align-self: center;
 }

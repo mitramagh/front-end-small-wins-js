@@ -2,10 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./NewPlanForm.css";
 import { useState } from "react";
+import { FaGalacticSenate } from "react-icons/fa";
 
 const defaultForm = {
   idea: "",
   planner: "",
+  isComplete: false,
 };
 
 const NewPlanForm = (props) => {
@@ -17,7 +19,7 @@ const NewPlanForm = (props) => {
     const value = inputElement.value;
 
     // make a new object based on form object
-    const newForm = { ...formData };
+    const newForm = { ...formData , isComplete:formData.isComplete === 'true'};
     newForm[name] = value;
     // console.log(newForm);
     setFormData(newForm);
