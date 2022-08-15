@@ -20,7 +20,7 @@ function App() {
   const defaultPlans = [];
   const defaultContents = [];
 
-  const url = "http://127.0.0.1:5000";
+  const url = "https://dashboard.heroku.com/apps/small-wins-capstone";
   // useState for Plan
   const [plans, setPlans] = useState(defaultPlans);
   // useState for Content
