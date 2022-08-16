@@ -9,14 +9,22 @@ const defaultContent = {
 };
 
 const NewContentForm = ({ submitContent, chosenPlan }) => {
-  const [ContentData, setContentData] = useState(defaultContent);
+  const [contentData, setContentData] = useState(defaultContent);
+  const [errors, setErrors] = useState({})
 
+  const validateContentInput=(contentData)=> {
+    const errors={}
+  if (contentData.content.trim()=== "") {
+    errors.content= "Please add a content!";
+  }
+  return Object.keys(errors).length === 0 ? null : errors;
+}
   const handleContentFormInput = (e) => {
     const inputElement = e.target;
     const name = inputElement.name;
     const value = inputElement.value;
 
-    const newContentData = { ...ContentData };
+    const newContentData = { ...contentData };
     newContentData[name] = value;
     console.log(newContentData);
     setContentData(newContentData);
@@ -24,7 +32,13 @@ const NewContentForm = ({ submitContent, chosenPlan }) => {
 
   const handleContentFormSubmission = (e) => {
     e.preventDefault();
-    submitContent(chosenPlan, ContentData);
+
+    const errors=validateContentInput(contentData);
+    console.log("validation error", errors);
+    setErrors( errors || {} )
+    if (errors) return;
+
+    submitContent(chosenPlan, contentData);
     setContentData(defaultContent);
   };
 
@@ -37,16 +51,17 @@ const NewContentForm = ({ submitContent, chosenPlan }) => {
           <input
             name="content"
             type="text"
-            value={ContentData.content}
+            value={contentData.content}
             onChange={handleContentFormInput}
             id="content"
           ></input>
+          <p>{errors.content && <div>{errors.content}</div>}</p>
           <label htmlFor="type">
             Content Type
             <select
               name="type"
               id="type"
-              value={ContentData.type}
+              value={contentData.type}
               onChange={handleContentFormInput}
             >
               <option value="Video" data-testid="select-option">

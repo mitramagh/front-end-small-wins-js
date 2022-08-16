@@ -18,6 +18,7 @@ const NewPlanButton = (props) => {
         <NewPlanForm
           makePlanCallback={props.makePlanCallback}
           handleClose={togglePopup}
+          
         />
       )}
     </div>

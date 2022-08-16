@@ -7,6 +7,7 @@
     font-size: 0.5em;
     overflow: auto ;
     display: flex;
+    flex-direction: column;
     padding: 10px;
     text-align: center;
     /* margin:auto; */
@@ -17,6 +18,7 @@
     white-space: pre-wrap;
 }
 textarea {
+    margin:10px;
 	border: none;
 	resize: none;
     padding: 10px;
