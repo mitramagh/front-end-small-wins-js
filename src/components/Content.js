@@ -22,35 +22,41 @@ const Content = ({
   comment,
   deleteContent,
   updateLikes,
+  // commentForContent,
 }) => {
   const contentType = type?.toLowerCase() || "";
   console.log(contentType);
   return (
-    <div className="Content">
-      {contentType === EnumContentType.VIDEO && (
-        <VideoContent content={content} />
-      )}
-      {contentType === EnumContentType.AUDIO && (
-        <AudioContent content={content} />
-      )}
-      {contentType === EnumContentType.TEXT && (
-        <TextContent content={content} />
-      )}
-      {contentType.includes("pdf") && (
-        <embed
-          className="form-control"
-          src={`data:application/pdf;${content}`}
-          id="pdf"
-        />
-      )}
-      {contentType.includes("image") && <img src={content} />}
-      {!contentType && <p>No Content Found</p>}
-      <button id="likeCount" onClick={() => updateLikes(content_id)}>
-        {like_count} ❤️{" "}
-      </button>
-      <button id="deleteContent" onClick={() => deleteContent(content_id)}>
-        X
-      </button>
+      <div className="content-container">
+        <div className='eachcontent'>
+          {contentType === EnumContentType.VIDEO && (
+            <VideoContent content={content} />
+          )}
+          {contentType === EnumContentType.AUDIO && (
+            <AudioContent content={content} />
+          )}
+          {contentType === EnumContentType.TEXT && (
+            <TextContent content={content} />
+          )}
+          {contentType.includes("pdf") && (
+            <embed
+              className="form-control"
+              src={`data:application/pdf;${content}`}
+              id="pdf"
+            />
+          )}
+          {contentType.includes("image") && <img src={content} />}
+          {!contentType && <p>No Content Found</p>}
+      </div>
+      <div className="buttons">
+        <button className='likebutton' id="likeCount" onClick={() => updateLikes(content_id)}>
+              {like_count} ❤️{" "}
+        </button>
+        {/* <button id="commentForContent" onsubmit={() => commentForContent(content_id)}></button> */}
+        <button  className='deletebutton'id="deleteContent" onClick={() => deleteContent(content_id)}>
+          X
+        </button>
+      </div>
       {/* <h2>{content}</h2> */}
     </div>
   );

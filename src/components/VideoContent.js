@@ -10,7 +10,7 @@ const VideoContent = ({ content, deleteContent, updateLikes }) => {
   };
 
   return (
-    <div className="Videocontent">
+    <div className="videocontent">
       {/* <input type="file" onChange={handleVideoUpload} /> */}
       <ReactPlayer
         // url='https://www.youtube.com/watch?v=BSBEUcAyFyk'

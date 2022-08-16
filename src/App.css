@@ -47,3 +47,14 @@ body {
   background: url(./assets/background.jpeg) ;
 
 }
+
+.pagetitle{
+  align-items: center;
+  color:white;
+}
+
+h1 {
+  text-align: center;
+  /* margin-top: 1em; */
+  /* padding-top: 1em; */
+}

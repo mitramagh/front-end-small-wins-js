@@ -5,11 +5,13 @@ import NewContentForm from "./NewContentForm";
 import PropTypes from "prop-types";
 import FileUpload from "./FileUpload";
 
+
 const ContentsView = ({
   contents,
   deleteContent,
   submitContent,
   updateLikes,
+  // commentForContent,
   chosenPlan,
   setChosenPlan,
   setContents,
@@ -25,7 +27,7 @@ const ContentsView = ({
     if (optionChosen === "sort alphabetically") {
       newContents.sort((obj1, obj2) => (obj1.type > obj2.type ? 1 : -1));
     } else if (optionChosen === "sort by likes") {
-      newContents.sort((obj1, obj2) => (obj1.like_count > obj2.like_count ? 1 : -1));
+      newContents.sort((obj1, obj2) => (obj1.like_count < obj2.like_count ? 1 : -1));
     } else if (optionChosen === "sort by ID") {
       newContents.sort((obj1, obj2) => (obj1.card_id > obj2.card_id ? 1 : -1));
     }
@@ -40,17 +42,17 @@ const ContentsView = ({
         <button className='exitview' onClick={exitPlan}>Return to your plans ⬅</button>
         <div className="addfile">
           <FileUpload className="fileupload" submitContent={submitContent} chosenPlan={chosenPlan} />
-          <select id="sortOptionsDropDown" onChange={sortContents}>
-            <option>sort by type</option>
-            <option>sort by likes</option>
-            <option>sort by ID</option>
-          </select>
           <NewContentForm
             className="newcontent"
             submitContent={submitContent}
             chosenPlan={chosenPlan}
           ></NewContentForm>
         </div>
+          <select className="sortoptions" id="sortOptionsDropDown" onChange={sortContents}>
+            <option>sort by type</option>
+            <option>sort by likes</option>
+            <option>sort by ID</option>
+          </select>
         <ContentList
           className="content-list"
           contents={contents}

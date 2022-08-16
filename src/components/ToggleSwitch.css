@@ -6,6 +6,7 @@
   display: inline-block;
   text-align: left;
   top: 0vw;
+  margin: 2px;
   /* align-items: center; */
 }
 .checkbox {
@@ -47,15 +48,17 @@
   padding-left: 10px;
   background-color: rgb(146, 172, 159);
   color: #fff;
+  font-size: .8rem;
 }
 .duration:after {
   content: "Long-Term";
   padding-right: 10px;
-  background-color: #bbb;
+  background-color:#bbb;
   color: #fff;
   text-align: right;
   justify-content: center;
   align-items: center;
+  font-size: .8rem;
 
 }
 .status:before {
@@ -63,6 +66,7 @@
   padding-left: 10px;
   background-color: rgb(146, 172, 159);
   color: #fff;
+  font-size: .8rem;
 }
 .status:after {
   content: "In-progress";
@@ -70,19 +74,20 @@
   background-color: #bbb;
   color: #fff;
   text-align: right;
+  font-size: .8rem;
 }
 .switch {
   display: block;
-  width: 2.5vw;
-  height: 2.5vw;
+  width: 3vw;
+  height: 3vw;
   /* margin: 5px; */
   background: #fff;
   position: absolute;
-  top: 6px;
+  top: -3px;
   /* bottom: 0; */
-  right: 9vw;
+  right: 9.5vw;
   border: 0 solid #bbb;
-  border-radius: 20px;
+  border-radius: 50%;
   transition: all 0.3s ease-in 0s;
   align-items: center;
 }

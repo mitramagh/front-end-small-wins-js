@@ -14,12 +14,14 @@ import PlansView from "./components/PlansView";
 import ContentsView from "./components/ContentsView";
 import Content from "./components/Content";
 import FileUpload from "./components/FileUpload";
+import * as FaIcons from 'react-icons/fa';
+
 
 function App() {
   const defaultPlans = [];
   const defaultContents = [];
 
-  const url = "https://small-wins-capstone.herokuapp.com";
+  const url = "http://127.0.0.1:5000";
   // useState for Plan
   const [plans, setPlans] = useState(defaultPlans);
   // useState for Content
@@ -230,9 +232,10 @@ function App() {
     console.log(userChoice);
     return (
       <div>
-        <h1>Plan : {userChoice.idea}</h1>
-        {/* <Content {...testContent}/> */}
-        <div>Upload File</div>
+         <div className='navbar ,menu-bars'>
+        < FaIcons.FaLeaf />
+       </div>
+        <h1 className="pagetitle">Plan: <FaIcons.FaLeaf /> {userChoice.idea} <FaIcons.FaLeaf /></h1>
         <ContentsView
           contents={contents}
           updateLikes={updateLikeCts}

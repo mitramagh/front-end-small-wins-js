@@ -25,11 +25,9 @@ const Plan = (props) => {
 
   return (
     <div className="plan">
-      <div
-        className="plantext"
-        onClick={() => props.selectPlanCallback(planId)}
-      >
-        <h1>Idea: {idea}</h1>
+      <div className="plantext"  onClick={() => props.selectPlanCallback(planId)}>
+        <p>Idea:</p>
+        <p> {idea}</p>
       </div>
       <div>
         <h2>Planner: {planner}</h2>
@@ -58,7 +56,7 @@ const Plan = (props) => {
       >
         X
       </button>
-      <div>
+      <div className="date">
         <p> Created at: {date}</p>
       </div>
     </div>

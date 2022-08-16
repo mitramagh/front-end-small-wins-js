@@ -2,21 +2,23 @@
     background-color: rgb(146, 172, 159);
     height: 50px;
     display: flex;
-    justify-content: start;
+    justify-content: center;
     align-items: center;
     border-radius: 30px;
-
+    
   }
   
   .menu-bars {
     margin-left: 2rem;
     font-size: 2rem;
     background: none;
+    align-items: center;
+
   }
   
   .nav-menu {
     background-color: rgb(146, 172, 159);
-    width: 200px;
+    width: 20vw;
     margin-top: 60px;
     margin-bottom: 30px;
     height: 100vh;

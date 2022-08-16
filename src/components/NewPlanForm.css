@@ -9,7 +9,7 @@
 
 .box {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     width: 65vw;
     margin: 0 auto;
     margin-left: 25vw;
