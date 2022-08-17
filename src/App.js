@@ -21,7 +21,7 @@ function App() {
   const defaultPlans = [];
   const defaultContents = [];
 
-  const url = "http://127.0.0.1:5000";
+  const url = "https://small-wins-capstone.herokuapp.com";
   // useState for Plan
   const [plans, setPlans] = useState(defaultPlans);
   // useState for Content
