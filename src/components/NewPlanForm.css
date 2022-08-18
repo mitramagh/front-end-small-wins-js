@@ -9,11 +9,11 @@
 
 .box {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 65vw;
     margin: 0 auto;
     margin-left: 25vw;
-    height:25vh;
+    height:30vh;
     /* max-height: 70vh; */
     margin-top: calc(100vh - 85vh - 20px);
     background: rgb(157, 167, 162);
@@ -21,18 +21,25 @@
     padding: 20px;
     border: 1px solid #999;
     overflow: auto;
-    font-size: 30px;
+    font-size: 25px;
+    /* margin: 10px; */
     font-family: Helvetica, sans-serif;
-    color:white;
+    /* color:white; */
+}
+.box input{
+    width:20vw;
+    height:2vw;
+    margin-left: 20px;
+    
 }
 
 .close-icon {
     content: 'x';
     color:rgb(66, 77, 72);
     cursor: pointer;
-    position:inherit;
+    position:absolute;
     right: calc(15% - 30px);
-    top: calc(100vh - 85vh - 33px);
+    top: calc(100vh - 82vh - 33px);
     background: #ededed;
     width: 25px;
     height: 25px;
@@ -41,4 +48,12 @@
     text-align: center;
     border: 1px solid #999;
     font-size: 20px;
+}
+
+.formerror2{
+    border: solid lightgray 1px;
+    font-style: italic;
+    text-align: center;
+    margin:10px;
+    font-size: small;
 }

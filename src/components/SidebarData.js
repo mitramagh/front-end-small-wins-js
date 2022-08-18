@@ -13,12 +13,6 @@ export const SidebarData = [
     cName: 'nav-text'
   },
   {
-    title: 'Login',
-    path: '/login',
-    icon: <RiIcons.RiHomeGearFill />,
-    cName: 'nav-text'
-  },
-  {
     title: 'GrowthPath',
     path: '/growthpath',
     icon: <IoIcons.IoMdFlower/>,
@@ -28,6 +22,12 @@ export const SidebarData = [
     title: 'Happy to Share',
     path: '/happytoshare',
     icon: <GiIcons.GiFlowers />,
+    cName: 'nav-text'
+  },
+  {
+    title: 'Archive',
+    path: '/archive',
+    icon: <RiIcons.RiHomeGearFill />,
     cName: 'nav-text'
   },
   {

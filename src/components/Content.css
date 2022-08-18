@@ -39,7 +39,7 @@
 .buttons{
     /* position:absolute; */
     display: flex;
-    justify-content: space-around;
+    justify-content:space-evenly;
     align-items:baseline;
     /* bottom: -24vw; */
     border: solid rgb(157, 167, 162) 2px;
@@ -101,3 +101,25 @@
     height:30vw;
 
 }
+
+.likebutton{ 
+    border: none;
+    font-size: larger;
+
+}
+
+.sharebutton{
+    border: none;
+    font-size: 1.5rem;
+    color:rgb(157, 167, 162);
+}
+
+.sharebutton:hover{
+    transform: scale(1.1); 
+}
+
+.imagesize img{
+
+    width: 40vw;
+}
+

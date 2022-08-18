@@ -19,6 +19,7 @@
 }
 textarea {
     margin:10px;
+    /* height:10vw; */
 	border: none;
 	resize: none;
     padding: 10px;

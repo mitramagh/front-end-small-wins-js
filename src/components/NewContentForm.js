@@ -45,17 +45,18 @@ const NewContentForm = ({ submitContent, chosenPlan }) => {
   return (
     <div className="contentform">
       <form onSubmit={handleContentFormSubmission}>
-        <fieldset>
-          <legend>Add a new Content.</legend>
+        
+          <legend>Add a new Content</legend>
           <label htmlFor="content">Content</label>
           <input
             name="content"
             type="text"
             value={contentData.content}
+            placeholder='Paste a new content here ...'
             onChange={handleContentFormInput}
             id="content"
           ></input>
-          <p>{errors.content && <div>{errors.content}</div>}</p>
+          <p>{errors.content && <div className="formerror">{errors.content}</div>}</p>
           <label htmlFor="type">
             Content Type
             <select
@@ -73,13 +74,11 @@ const NewContentForm = ({ submitContent, chosenPlan }) => {
               <option value="Text" data-testid="select-option">
                 Text
               </option>
-              <option value="Image" data-testid="select-option">
-                Image
-              </option>
+            
             </select>
           </label>
           <input className="submitcontent" type="submit" />
-        </fieldset>
+        
       </form>
     </div>
   );

@@ -1,0 +1,14 @@
+.home{
+    display: flex;
+    flex-direction: column-reverse;
+    /* margin-left: 20vw; */
+    margin: 0vw 5vw 5vw 25vw;
+}
+.profile-photo{
+    width: 65vw;
+    justify-content: center;
+}
+
+.home p{
+    font-family:   'Arial Narrow', sans-serif;
+}

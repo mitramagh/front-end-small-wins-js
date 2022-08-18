@@ -4,6 +4,7 @@ import ContentList from "./ContentList";
 import NewContentForm from "./NewContentForm";
 import PropTypes from "prop-types";
 import FileUpload from "./FileUpload";
+import * as FaIcons from 'react-icons/fa';
 
 
 const ContentsView = ({
@@ -24,11 +25,11 @@ const ContentsView = ({
     let optionChosen = document.getElementById("sortOptionsDropDown").value;
     console.log(optionChosen);
     const newContents = [...contents];
-    if (optionChosen === "sort alphabetically") {
+    if (optionChosen === "Filter by Type") {
       newContents.sort((obj1, obj2) => (obj1.type > obj2.type ? 1 : -1));
-    } else if (optionChosen === "sort by likes") {
+    } else if (optionChosen === "Filter by Likes") {
       newContents.sort((obj1, obj2) => (obj1.like_count < obj2.like_count ? 1 : -1));
-    } else if (optionChosen === "sort by ID") {
+    } else if (optionChosen === "Filter by Date") {
       newContents.sort((obj1, obj2) => (obj1.card_id > obj2.card_id ? 1 : -1));
     }
     setContents(newContents);
@@ -39,7 +40,6 @@ const ContentsView = ({
   return (
     <div className="contentview">
       <div className="containerview">
-        <button className='exitview' onClick={exitPlan}>Return to your plans ⬅</button>
         <div className="addfile">
           <FileUpload className="fileupload" submitContent={submitContent} chosenPlan={chosenPlan} />
           <NewContentForm
@@ -48,11 +48,14 @@ const ContentsView = ({
             chosenPlan={chosenPlan}
           ></NewContentForm>
         </div>
+        <div className="middlebar">
+          <button className='exitview' onClick={exitPlan}>< FaIcons.FaArrowLeft /></button>
           <select className="sortoptions" id="sortOptionsDropDown" onChange={sortContents}>
-            <option>sort by type</option>
-            <option>sort by likes</option>
-            <option>sort by ID</option>
+            <option>Filter by Type</option>
+            <option>Filter by Likes</option>
+            <option>Filter by Date</option>
           </select>
+        </div>
         <ContentList
           className="content-list"
           contents={contents}

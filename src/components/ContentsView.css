@@ -24,27 +24,29 @@
 }
 
 .exitview{
-    width:20vw;
-    height:8vw;
-    background-color: rgb(157, 167, 162);
+    width:10vw;
+    height:4vw;
+    background-color: white;
     border:solid rgb(157, 167, 162) 6px;
 
-    border-radius: 30px;
-    margin: 20px;
+    border-radius: 10px;
+    /* margin: 20px; */
 }
 
 .content-list{
     display:flex;
     /* border:solid rgb(157, 167, 162) 1px; */
-    background-color:rgb(0, 0, 0);
+    background-color:rgb(218, 228, 223);
     flex-direction:row;
     align-items: center;
     justify-content: center;
     flex-wrap:wrap;
     /* border-radius: 30px; */
     margin:5px;
-    border-top: solid rgb(157, 167, 162) 25px;
+    /* border-top: solid rgb(157, 167, 162) 25px; */
     padding:20px;
+    width: 98vw;
+    min-height: 50vh;
 }
 
 .addfile{
@@ -59,10 +61,24 @@
 
 .sortoptions{
     width:15vw;
-    height:3vw;
+    height:4vw;
     font: bold;
     font-size: 1.5rem;
+    background-color:white;
     /* border-bottom: solid black 6px; */
     border-radius: 5px;
+    border:solid rgb(157, 167, 162) 6px;
+
+}
+
+.middlebar{
+    background-color:rgb(146, 172, 159);
+    /* margin: 20px; */
+    width: 98vw;
+    height: 6vw;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    
 
 }

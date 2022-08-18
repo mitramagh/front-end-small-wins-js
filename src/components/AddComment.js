@@ -12,7 +12,7 @@ const AddComment = ({handleAddComment}) => {
   const handleSaveClick =()=> {
     if (commentText.trim().length>0){
     handleAddComment(commentText)
-    setCommentText('')
+    setCommentText(commentText)
     }
   }
   return (

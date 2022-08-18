@@ -8,10 +8,12 @@ import "./PlansView.css";
 const PlansView = (props) => {
   return (
     <div className="container">
-      <p className="planview-counter">
+      <div className="planview-counter">
+      <p>
         {" "}
-        Congrats! You Achieved 2 Short-Term and 1 Long-Term plan!!
+        Congrats! You Achieved 2 Short-Term plans!!
       </p>
+      </div>
       <PlanList
         planData={props.planData}
         selectPlanCallback={props.selectPlanCallback}

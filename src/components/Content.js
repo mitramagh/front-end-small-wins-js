@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import TextContent from "./TextContent";
 import AudioContent from "./AudioContent";
 import VideoContent from "./VideoContent";
+import * as FaIcons from 'react-icons/fa';
 
 const EnumContentType = {
   TEXT: "text",
@@ -45,17 +46,24 @@ const Content = ({
               id="pdf"
             />
           )}
-          {contentType.includes("image") && <img src={content} />}
-          {!contentType && <p>No Content Found</p>}
+          <div className="imagesize">
+            {contentType.includes("image") && <img src={content} />}
+            {!contentType && <p>No Content Found</p>}
+          </div>
       </div>
       <div className="buttons">
-        <button className='likebutton' id="likeCount" onClick={() => updateLikes(content_id)}>
-              {like_count} ❤️{" "}
-        </button>
         {/* <button id="commentForContent" onsubmit={() => commentForContent(content_id)}></button> */}
         <button  className='deletebutton'id="deleteContent" onClick={() => deleteContent(content_id)}>
           X
         </button>
+        <button className='likebutton' id="likeCount" onClick={() => updateLikes(content_id)}>
+        ❤️{" "} {like_count} 
+        </button>
+        <button className="sharebutton"><FaIcons.FaLeaf/></button>
+        <button className="sharebutton"><FaIcons.FaCopy/></button>
+        <button className="sharebutton"><FaIcons.FaShare/></button>
+        <button className="sharebutton"><FaIcons.FaComment/></button>
+
       </div>
       {/* <h2>{content}</h2> */}
     </div>

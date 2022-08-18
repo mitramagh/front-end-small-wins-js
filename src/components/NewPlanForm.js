@@ -72,24 +72,24 @@ const NewPlanForm = (props) => {
           x
         </span>
         <form onSubmit={handleFormSubmission}>
-          <label>idea</label>
+          <label>Idea</label>
           <input
             type="text"
             name="idea"
             value={formData.idea}
             onChange={handleFormInput}
             ></input>
-          <p>{errors.idea && <div>{errors.idea}</div>}</p>
-          <label>planner</label>
+          <p>{errors.idea && <div className="formerror2">{errors.idea}</div>}</p>
+          <label>Planner</label>
           <input
             type="text"
             name="planner"
             value={formData.planner}
             onChange={handleFormInput}
             ></input>
-          <p>{errors.planner && <div>{errors.planner}</div>}</p>
+          <p>{errors.planner && <div className="formerror2">{errors.planner}</div>}</p>
 
-          <input type="submit"></input>
+          <input  type="submit"></input>
         </form>
       </div>
     </div>

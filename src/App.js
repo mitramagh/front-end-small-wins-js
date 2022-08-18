@@ -193,14 +193,14 @@ function App() {
   // default landing page
   if (chosenPlan === null) {
     return (
-      <div>
+      <div className="header">
         <Router>
           <Sidebar />
           <Routes>
-            <Route path="/" exact element={Home} />
-            <Route path="/login" element={<Home/>} />
-            <Route path="/growthpath" element={<ContentsView />} />
+            <Route path="/" exact element={<Home/>} />
+            <Route path="/growthpath" element={<plansView />} />
             <Route path="/happytoshare" element={<ContentsView />} />
+            <Route path="/archive" element={<ContentsView/>} />
             <Route path="/trash" component={Trash} />
           </Routes>
         </Router>
@@ -232,10 +232,10 @@ function App() {
     console.log(userChoice);
     return (
       <div>
-         <div className='navbar ,menu-bars'>
-        < FaIcons.FaLeaf />
+        <div className='navbar ,menu-bars'>
+        {/* < FaIcons.FaLeaf /> */}
+        <h2 className="pagetitle"><FaIcons.FaLeaf /> Plan:  {userChoice.idea} <FaIcons.FaLeaf /></h2>
        </div>
-        <h1 className="pagetitle">Plan: <FaIcons.FaLeaf /> {userChoice.idea} <FaIcons.FaLeaf /></h1>
         <ContentsView
           contents={contents}
           updateLikes={updateLikeCts}

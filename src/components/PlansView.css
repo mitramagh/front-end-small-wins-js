@@ -9,3 +9,10 @@
     align-items: center;
     border-radius: 30px;
 }
+
+.container .planview-counter>p {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-left: 18vw;
+}

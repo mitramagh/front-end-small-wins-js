@@ -44,14 +44,14 @@
 
 }
 .duration:before {
-  content: "Short-Term";
+  content: "Long-Term";
   padding-left: 10px;
   background-color: rgb(146, 172, 159);
   color: #fff;
   font-size: .8rem;
 }
 .duration:after {
-  content: "Long-Term";
+  content: "Short-Term";
   padding-right: 10px;
   background-color:#bbb;
   color: #fff;

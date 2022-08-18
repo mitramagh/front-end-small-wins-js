@@ -1,6 +1,6 @@
 .contentform {
     display:flex;
-    width:40vw;
+    width:30vw;
     height: 20vw;
     /* left:50%; */
     /* margin-left: 25vw; */
@@ -11,12 +11,18 @@
     align-items: center;
     border-radius: 30px;
     justify-content:center;
+    font-weight: bold;
+    margin: 10px;
 }
 
 .submitcontent {
+    border: solid rgb(157, 167, 162) 6px;
+    border-radius: 10px;
+    background-color: rgb(157, 167, 162);
     width:20vw;
     /* display: flex; */
     align-items: center;
+    text-align: center;
     margin-left: 10vw;
 
 }
@@ -27,3 +33,21 @@
     height: 20vw;
     margin-left: 45vw;
 }
+
+.contentform input{
+    height: 4vw;
+    width:25vw;
+    border:none;
+    border-radius: 10px;
+    padding:5px;
+    margin: 10px;
+    word-wrap: break-word;
+    overflow-wrap: normal;
+}
+.formerror{
+    border: solid lightgray 1px;
+    font-style: italic;
+    text-align: center;
+    margin:10px;
+}
+

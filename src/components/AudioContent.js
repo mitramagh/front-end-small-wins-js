@@ -13,7 +13,7 @@ const AudioContent= ({ content, deleteContent, updateLikes }) => {
     };
 
   return (
-      <div className="Audiocontent">
+      <div className="audiocontent">
           <ReactAudioPlayer 
           // autoPlay 
           src={content}
@@ -21,7 +21,7 @@ const AudioContent= ({ content, deleteContent, updateLikes }) => {
           onPlay={e => console.log("onPlay")}
           controls={true} />
           
-          {/* <button> play this </button> */}
+          <p> You can play this audio file</p>
 
       </div>
 );
